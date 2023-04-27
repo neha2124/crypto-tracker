@@ -1,0 +1,16 @@
+.grid-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 1.5rem;
+    flex-wrap: wrap;
+}
+.info-container{
+    margin-top: 1.3rem;
+}
+.list{
+    display: block;
+    margin: auto;
+    width: 80%;
+}
