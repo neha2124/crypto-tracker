@@ -12,7 +12,7 @@
     transform: scale(1.02);
     
 }
-.grid-container-red:hover{
+.grid-com:hover{
     border: 2px solid var(--red) !important;
     transition: all 0.3s;
 }

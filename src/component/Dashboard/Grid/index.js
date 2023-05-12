@@ -1,5 +1,6 @@
 import React from 'react'
 import './Style.css'
+import { toast } from 'react-toastify';
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { Link } from 'react-router-dom';
@@ -20,8 +21,10 @@ const Grid = ({ coin }) => {
                 <button
                
                 ><StarsOutlinedIcon
+                className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
                  onClick={(e)=> {
                     e.preventDefault()
+                   
                     addWatchList(coin.id)}}
                 />
                 </button>

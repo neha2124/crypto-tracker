@@ -7,7 +7,7 @@ import { getCoinData } from '../functions/getCoin'
 import List from '../component/Dashboard/List'
 import { getPrice } from '../functions/getPrice'
 import { coinObject } from '../functions/coonvertObject'
-import { CircularProgress } from "@mui/material";
+import Loader from '../component/common/loader'
 import CoinInfo from '../component/coin/coinInfo'
 import { settingChartData } from '../functions/settingChartData'
 import LineChart from '../component/coin/LineChart'
@@ -101,7 +101,7 @@ const Comapre = () => {
     return (
         <div>
             <Header />
-            {loading ? <CircularProgress /> :
+            {loading ? <Loader /> :
                 <div >
                     <div className="compare-flex">
                         <Compare crypto1={crypto1} 
