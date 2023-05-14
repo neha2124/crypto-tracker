@@ -1,6 +1,6 @@
 // import { json } from "react-router-dom"
 
-export const addWatchList = (id) =>{
+export const addWatchList = (id,setAdded) =>{
     let list
   const watchList = localStorage.getItem('watchlist')
     if(watchList == null){
@@ -10,7 +10,7 @@ export const addWatchList = (id) =>{
     }
     list.push(id)
     localStorage.setItem('watchlist',JSON.stringify(list))
-   
+   setAdded(true)
     
 
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Style.css'
 import { toast } from 'react-toastify';
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
@@ -8,6 +8,13 @@ import StarsIcon from '@mui/icons-material/Stars';
 import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import { addWatchList } from '../../../functions/addWatchList';
 const Grid = ({ coin }) => {
+    const [added,setAdded] = useState(false)
+    // let arg = false
+        // function added(arg) {
+        // return arg;
+    // }
+    
+    // console.log(added(true))
     return (
         <Link to={`/coin/${coin.id}`}>
         <div className={`grid-container ${coin.price_change_percentage_24h < 0 && 'grid-com'}`}>
@@ -20,13 +27,17 @@ const Grid = ({ coin }) => {
                 </div>
                 <button
                
-                ><StarsOutlinedIcon
+                >{added ? <StarsIcon
+                className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
+                />:
+                    <StarsOutlinedIcon
                 className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
                  onClick={(e)=> {
                     e.preventDefault()
                    
-                    addWatchList(coin.id)}}
+                    addWatchList(coin.id,setAdded)}}
                 />
+                 }
                 </button>
             </div>
             {coin.price_change_percentage_24h > 0 ?

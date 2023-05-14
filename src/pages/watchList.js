@@ -7,12 +7,10 @@ import Loader from '../component/common/loader'
 import Header from '../component/common/header';
 const WatchList = () => {
     const [data, setData] = useState([])
-    console.log(data)
     const [item, setItem] = useState([])
     const [loading, setLoading] = useState(true)
-   
+       
        const getData = async () => {
-        
         const myCoin = await getCoins()
         if (myCoin) {
             setData(myCoin)
