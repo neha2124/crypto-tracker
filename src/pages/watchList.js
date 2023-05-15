@@ -1,41 +1,28 @@
 import React, { useEffect, useState } from 'react'
 // import { addWatchList } from '../functions/addWatchList'
 import { getCoins } from '../functions/getCoinData'
-import { FilterData } from '../functions/filtesData'
+import { filterData } from '../functions/filtesData'
 import Grid from '../component/Dashboard/Grid'
 import Loader from '../component/common/loader'
 import Header from '../component/common/header';
 const WatchList = () => {
     const [data, setData] = useState([])
-    const [item, setItem] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const coins = JSON.parse(localStorage.getItem('watchList'))
        
        const getData = async () => {
-        const myCoin = await getCoins()
-        if (myCoin) {
-            setData(myCoin)
-            // setLoading(false)
-        }
-    }
-    let list = localStorage.getItem('watchlist')
-    list = JSON.parse(list)
-    let watchListData = new Array(list)
-    console.log(watchListData)
-                
-    const ac = async() =>{
         setLoading(true)
-        let watchData = FilterData(data, list)
-        if(watchData){
-            setItem(watchData) 
-            setLoading(false)
+        const myCoin = await getCoins()
+        if (coins) {
+            setData(myCoin.filter((item) => coins.includes(item.id)))
+            
         }
-  
+        setLoading(false)
     }
+    // console.log(watchListData)
+                
 
        
-      useEffect(()=>{
-        ac()
-      },[watchListData])
 
     
         useEffect(() => {
@@ -53,8 +40,8 @@ const WatchList = () => {
                 :
                 <div className='grid-flex'>
 
-                    {item.map((it) => {
-                        return (<Grid coin={it} />)
+                    {data.map((item) => {
+                        return (<Grid coin={item} />)
                     })
                     }
 
