@@ -63,14 +63,25 @@ a{
 .wrapper tr{
   margin: 0;
 }
-.compare-flex{
+.select-flex {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
-  margin: 1.2rem 2rem;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 3rem;
 }
 .light{
   background-color: var(--white);
   
+}
+@media only screen and (max-width: 800px) {
+  .select-flex {
+    justify-content: space-between;
+    gap: 0rem;
+    margin: 1.5rem 0.5rem;
+  }
+
+  .select-flex p {
+    display: none;
+  }
 }

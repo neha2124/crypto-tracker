@@ -33,9 +33,16 @@
     color: var(--white);
     font-size: 1.2rem;
 }
+.add-list button{
+    background-color: transparent;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
 .mobile-td{
     display: none;
 }
+
 @media (max-width:1000px){
     .coin-list{
         margin: 0;

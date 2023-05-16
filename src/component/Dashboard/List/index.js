@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { Tooltip } from '@mui/material';
 import './style.css'
 import { ConvertNumber } from '../../../functions/convertNumber';
+import StarsIcon from '@mui/icons-material/Stars'
+import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined'
+import { addWatchList } from '../../../functions/addWatchList';
+import { hasBeenAdded } from '../../../functions/hasBeenAdded';
+import { removeList } from '../../../functions/removeWatchList';
+import { Link } from 'react-router-dom';
 const List = ({coin}) => {
+  const [added , setAdded] = useState(hasBeenAdded(coin.id))
   return (
+    <Link to={`/coin/${coin.id}`}>
     <tr className='coin-list'>
         <Tooltip title='logo'>
          <td className='td-img list-img'>
@@ -60,9 +68,32 @@ const List = ({coin}) => {
                    {ConvertNumber(coin.market_cap.toLocaleString())}
                 </p>
                 </td>
+                <td className='add-list'>
+                <button
+               onClick={(e)=> {
+                e.preventDefault()
+                if(added){
+                    removeList(coin.id)
+                    setAdded(false)
+                }else{
+               addWatchList(coin.id)
+               setAdded(true)
+                }}}
+                >{added? 
+                    <StarsIcon
+                      className={` icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
+                    />
+                : <StarsOutlinedIcon
+                className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
+                 
+                 />
+                }
+                </button>
+                </td>
 
 
     </tr>
+    </Link>
   )
 }
 

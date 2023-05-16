@@ -15,18 +15,13 @@ import './style.css'
 
  }, [])
 
-
-
 const getData = async () => {
    
     const data = await getCoins()
     setCoinData(data)
-   
-   
 }
   
- 
-  const style = {
+const style = {
     height: "2.5rem",
     color: "var(--white)",
     "& .MuiOutlinedInput-notchedOutline": {
@@ -43,17 +38,14 @@ const getData = async () => {
   
       
   }
-  
-  
-
-  return (
+    return (
     
-    <div className="select-days">
-     <p>Crypto 1</p>
+        <div className="select-flex">
+        <p>Crypto 1</p>
         <Select
+        className='select-coin'
           sx={style}
-          
-          value={crypto1}
+         value={crypto1}
           label="crypto"
           onChange={(e)=>handleChange(e,false)}
         >
@@ -67,9 +59,8 @@ const getData = async () => {
         </Select>
         <p>crypto 2</p>
         <Select
-        
+          className='select-coin'
           sx={style}
-          
           value={crypto2}
           label="crypto"
           onChange={(e)=>handleChange(e,true)}
@@ -84,6 +75,6 @@ const getData = async () => {
         </Select>
       
     </div>
-  );
+  )
 }
 export default Compare

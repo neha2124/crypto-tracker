@@ -103,7 +103,7 @@ const Comapre = () => {
             <Header />
             {loading ? <Loader /> :
                 <div >
-                    <div className="compare-flex">
+                    <div className="select-flex">
                         <Compare crypto1={crypto1} 
                         crypto2={crypto2}
                          handleChange={handleCoinChanges} />
