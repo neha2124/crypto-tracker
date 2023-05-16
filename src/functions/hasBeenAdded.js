@@ -1,7 +1,7 @@
-export const abcd = (item)=>{
+export const hasBeenAdded = (item)=>{
     const watchList = localStorage.getItem('watchlist')
     if(watchList){
-        let arr = new Array(JSON.parse(watchList))
+        let arr = JSON.parse(watchList)
         if(arr.includes(item)){
             return true
         }else{

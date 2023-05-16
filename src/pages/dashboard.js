@@ -4,15 +4,14 @@ import Header from '../component/common/header'
 import { getCoins } from '../functions/getCoinData'
 import Search from '../component/Dashboard/search'
 import Pagination from '../component/Dashboard/pagination'
-// import { useEffect } from 'react'
-// import axios from 'axios'
-
+import Loader from '../component/common/loader'
 
 const Dashboard = () => {
-  const [coin, setCoin] = useState([])
-  const [search, setSearch] = useState("")
-  const [pagination ,setPagination] = useState([])
-  console.log(pagination)
+     const [coin, setCoin] = useState([])
+     const [search, setSearch] = useState("")
+     const [pagination ,setPagination] = useState([])
+     const [loading,setLoading] = useState(false)
+  
   useEffect(() => {
     getData()
   }, [])
@@ -36,6 +35,7 @@ const Dashboard = () => {
       
     )
     const getData = async () => {
+      setLoading(true)
       const myCoin = await getCoins()
       if (myCoin) {
         
@@ -43,16 +43,20 @@ const Dashboard = () => {
         setPagination(myCoin.slice(0,10))
   
       }
+      setLoading(false)
     }
    
   return (
+    <>
+    {loading? <Loader/> :
     <div>
       <Header />
       <Search search={search}  onHandleChange={handleChange}/>
       <Tab coin= {search ? filterCoin : pagination }/>
-      <Pagination page ={page} handleChange ={handlePageChange}/>
+      <Pagination page = {page} handleChange = {handlePageChange}/>
     </div>
-
+  }
+  </>
   )
 }
 

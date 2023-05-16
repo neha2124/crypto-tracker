@@ -6,7 +6,7 @@ import Header from '../component/common/header'
 import { getCoinData } from '../functions/getCoin'
 import List from '../component/Dashboard/List'
 import CoinInfo from '../component/coin/coinInfo'
-import { CircularProgress } from "@mui/material";
+import Loader from '../component/common/loader'
 import { getPrice } from '../functions/getPrice'
 import LineChart from '../component/coin/LineChart'
 // import {convertDate} from '../functions/converDate'
@@ -82,7 +82,7 @@ const Coinpage = () => {
             <Header />
 
             {loading ? (
-                <CircularProgress />
+                <Loader />
             ) : (
                 <>
                 <div className="wrapper">

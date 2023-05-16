@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import StarsIcon from '@mui/icons-material/Stars';
 import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import { addWatchList } from '../../../functions/addWatchList'
-import {abcd } from '../../../functions/hasBeenAdded';
+import { hasBeenAdded } from '../../../functions/hasBeenAdded';
 import { removeList } from '../../../functions/removeWatchList';
 const Grid = ({ coin }) => {
-    const [data, setData] = useState(abcd(coin.id))
+    const [added, setAdded] = useState(hasBeenAdded(coin.id))
     // console.log(data)
 
     return (
@@ -25,28 +25,22 @@ const Grid = ({ coin }) => {
                 <button
                onClick={(e)=> {
                 e.preventDefault()
-                if(data){
+                if(added){
                     removeList(coin.id)
-                    setData(false)
+                    setAdded(false)
                 }else{
                addWatchList(coin.id)
-               setData(true)
-                }
-        
-            }
-            }
-                >{data ? 
+               setAdded(true)
+                }}}
+                >{added? 
                     <StarsIcon
                       className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
-                    
-                    
                     />
                 : <StarsOutlinedIcon
                 className={`icon-chip ${coin.price_change_percentage_24h < 0 && 'chip-red'}`}
                  
-                />
-                   
-                 }
+                 />
+                }
                 </button>
             </div>
             {coin.price_change_percentage_24h > 0 ?
