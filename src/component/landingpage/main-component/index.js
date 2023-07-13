@@ -5,7 +5,27 @@ import iphone from '../../../assets/iphone.png'
 import gradient from '../../../assets/gradient.png'
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
+// import { RWebShare } from 'react-web-share'
 const Landing = () => {
+    const shareFunc = async() =>{
+        if(navigator.share){
+           try{
+            const data={
+            title:'Crypto-Tracker',
+
+                text:'Share-Crypto-Tracker',
+                url:'https://cryptotracker-bay.vercel.app/',
+
+             }
+             await navigator.share(data)
+             alert('share')
+            }catch(err){
+                console.log(err)
+            }
+        }else{
+            alert('not share')
+        }
+    }
     return (
         <div className='flex'>
             <div className="flex-1">
@@ -39,7 +59,9 @@ const Landing = () => {
                     <Link to={'/dashboard'}>
                     <Button text={"Dashboard"}></Button>
                     </Link>
-                    <Button text={"Share"} outLined={true}></Button>
+                    
+                    
+                    <Button text={"Share"} outLined={true} onClick={()=>shareFunc()}></Button>
                 </motion.div>
             </div>
             
