@@ -2,9 +2,9 @@ import React from 'react'
 // import { Button } from '@mui/material'
 import './style.css'
 
-const Button = ({text ,outLined}) => {
+const Button = ({text ,outLined,shareFunc}) => {
   return (
-   <div className={outLined ? "outLined-btn" : "btn"}>{text}</div>
+   <div className={outLined ? "outLined-btn" : "btn"} onClick={()=>shareFunc()}>{text}</div>
   )
 }
 

@@ -5,8 +5,10 @@ import iphone from '../../../assets/iphone.png'
 import gradient from '../../../assets/gradient.png'
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
+import {toast} from 'react-toastify'
 // import { RWebShare } from 'react-web-share'
 const Landing = () => {
+    
     const shareFunc = async() =>{
         if(navigator.share){
            try{
@@ -17,13 +19,13 @@ const Landing = () => {
                 url:'https://cryptotracker-bay.vercel.app/',
 
              }
-             await navigator.share(data)
-             alert('share')
+              await navigator.share(data)
+             
             }catch(err){
                 console.log(err)
             }
         }else{
-            alert('not share')
+            toast.error('not able to shared')
         }
     }
     return (
@@ -61,7 +63,7 @@ const Landing = () => {
                     </Link>
                     
                     
-                    <Button text={"Share"} outLined={true} onClick={()=>shareFunc()}></Button>
+                    <Button text={"Share"} outLined={true} shareFunc={shareFunc}></Button>
                 </motion.div>
             </div>
             
